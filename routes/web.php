@@ -3,20 +3,27 @@
 //hanya menampilkan halaman default '/'(slash)
 // method (get, post, put dan delete)
 
-use App\Http\Controllers\DashboardController;
+use App\Models\Service;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\LatihanController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KalkulatorController;
+use App\Http\Controllers\TransOrderController;
 
 Route::get('/', [LoginController::class, 'index']);
+Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post ('actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 //grouping routing
 //resource sudah mewakili get, post, delete
 Route::middleware(['auth'])->group(function(){
     Route::resource('dashboard', DashboardController::class);
+    Route::resource('service', ServiceController::class);
 });
 
 // {id} bebas bisa angka atau tulisan
@@ -44,3 +51,5 @@ Route::post('store-kali',[KalkulatorController::class, 'storeKali'])->name('stor
 
 Route::resource('user', UsersController::class);
 Route::get('delete/{id}', [UsersController::class, 'delete'])->name('delete');
+Route::resource('customer', CustomerController::class);
+Route::resource('trans_order', TransOrderController::class);

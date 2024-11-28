@@ -160,5 +160,25 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
+    <script>
+        // let button = document.querySelector('.add-row');
+        //INI PAKAI JAQUERY
+        $('.add-row').click(function(e){
+            //mematikan sebuah button supaya tidak submit
+            e.preventDefault();
+            alert('success bisa dong!');
+            let newRow ="";
+            newRow +="<tr>"
+            newRow +="<td>ini td 1</td>";
+            newRow +="<td> ini td 2</td>";
+            newRow +="<td> ini td 3</td>";
+            newRow +="<td> ini td 4</td>";
+            newRow +="</tr>"
+
+            let tbody = $('.tbody-parent');
+            tbody.append(newRow)
+        });
+    </script>
+
   </body>
 </html>
